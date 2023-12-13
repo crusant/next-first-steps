@@ -1,23 +1,26 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export default function ActiveLink({
+  className = '',
   path,
-  text
+  children
 }: {
+  className?: string;
   path: string;
-  text: string;
+  children: ReactNode;
 }) {
   const pathname = usePathname();
 
   return (
     <Link
-      className={`text-gray-900 text-sm/6 font-semibold${pathname === path ? ' text-indigo-600' : ''}`}
+      className={`text-gray-900${className}${pathname === path ? ' text-indigo-600' : ''}`}
       href={path}
     >
-      {text}
+      {children}
     </Link>
   );
 }
